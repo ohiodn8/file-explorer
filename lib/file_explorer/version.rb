@@ -1,0 +1,3 @@
+module FileExplorer
+  VERSION = '0.1.0'
+end
