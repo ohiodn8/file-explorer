@@ -31,3 +31,18 @@
     <% end %>
   </tbody>
 </table>
+
+<hr><br>
+<h2>Some Commands I'm Intentionally saving on this page. . . signed => Odion Ohio</h2>
+<% if request.ssl? == true %>
+  <b>https is true</b>
+<% else %>  
+  <%= request.base_url[7..-1] %><br>
+<% end %>
+<%= request.base_url %> <br> 
+
+<%= request.host %><%= request.port_string %><br>
+<%= request.request_method %><br>
+<%= request.url %><br>
+<%= request.original_url %><br>
+<%= request.ssl? %><br>

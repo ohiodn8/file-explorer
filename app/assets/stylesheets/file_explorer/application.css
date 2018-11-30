@@ -39,6 +39,12 @@ a:visited {
   color: rgb(110, 110, 170);
 }
 
+.icon {
+    width: 20px;
+    height: 20px;
+	filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
 #notice {
   background-color: #F0FFFF;
   color: #483D8B;

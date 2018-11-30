@@ -64,7 +64,7 @@ module FileExplorer
 			size: (is_file ? (number_to_human_size stat.size rescue '-'): '-'),
 			type: (is_file ? :file : :directory),
 			date: (stat.mtime.to_formatted_s(:short) rescue '-'),
-			relative: my_escape("#{current_url}#{file}").gsub('%2F', '/'),
+			relative: my_escape("file_explorer/#{current_url}#{file}").gsub('%2F', '/'),
 			entry: "#{file}#{is_file ? '': '/'}",
 			absolute: real_path_absolute
 		  }
