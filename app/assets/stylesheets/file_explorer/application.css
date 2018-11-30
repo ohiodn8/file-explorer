@@ -15,7 +15,7 @@
  */
 
 body {
-  background-color: #00001a;
+  background-color: #312312;
   color: rgba(249, 249, 250, 0.8);
   text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px white;  
 }
@@ -42,7 +42,29 @@ a:visited {
 .icon {
     width: 20px;
     height: 20px;
-	filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+.wk {
+	filter: invert(0.6) sepia(1) saturate(5) hue-rotate(175deg);
+}
+.wk:hover {
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(175deg);
+    transform: scale(1.2);
+    transition: background 0.5s, transform 0.5s ease-out, fill 0.5s;
+	box-shadow: 0px 0px 5px #fff;
+}
+.n-wk {
+    filter: invert(0.1) sepia(1) saturate(5) hue-rotate(175deg);	
+}
+
+table, td, th {
+    border: 1px solid white;
+}
+table {
+    border-collapse: collapse;
+    width: 60%;
+}
+th {
+    height: 50px;
 }
 
 #notice {

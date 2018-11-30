@@ -1,4 +1,26 @@
-<h1>/<%= params[:path] %></h1>
-<pre>
-<%= @file %>
-</pre>
+<div style="background-color:#F0F8FF;">
+	<h1 style="display: inline-block;margin: 3px 10px;">
+		<a href="https://github.com/ohiodn8/file-explorer" target="_blank">File Explorer</a>
+	</h1>	
+	<br><br>
+</div>
+
+<div style="margin: 25px 50px;">
+	<table>
+	  <tr>
+		<th><h2>/<%= params[:path] %></h2></th>
+		<th><%= link_to image_tag("/assets/file_explorer/arrow-circle-left.svg", class: "icon wk"), :back %></th>
+		<th>
+			<% if current_page?('/file_explorer') %> <%= Dir.pwd %> 
+			<% else %> 
+				<a href="/file_explorer"><img src="/assets/file_explorer/home.svg" alt="home" class="icon wk"><br>
+				<b>System Root Path</b></a>
+			<% end %>	
+		</th>
+	  </tr>
+	</table><br>
+
+	<pre>
+	<%= @file %>
+	</pre>
+</div>

@@ -1,48 +1,66 @@
-<h1><%= @absolute_path %> 
-<% if current_page?('/file_explorer') %> <%= Dir.pwd %> <% end %></h1>
+<div style="background-color:#F0F8FF;">
+	<h1 style="display: inline-block;margin: 3px 10px;">
+		<a href="https://github.com/ohiodn8/file-explorer" target="_blank">File Explorer</a>
+	</h1>	
+	<br><br>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Filename</th>
-      <th>Size</th>
-      <th>Date</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @directory.each do |entry| %>
-    <tr>
-      <td>
-        <%= link_to "#{entry[:entry]}", "/#{entry[:relative]}", class: entry[:type].to_s %>
-      </td>
-      <td>
-        <%= entry[:size] %>
-      </td>
-      <td>
-        <%= entry[:date] %>
-      </td>
-      <td>
-        <% if entry[:entry] != './' && entry[:entry] != '../' %>
-          <%= link_to 'Delete', "/#{entry[:relative]}", method: :delete, class: 'delete', data: { confirm: "Are you sure you want to delete `#{entry[:absolute]}`?" } %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div style="margin: 25px 50px;">
+	<table>
+	  <tr>
+		<th><h2><%= @absolute_path %> </h2></th>
+		<th>&nbsp; &nbsp; &nbsp;</th>
+		<th>
+			<% if current_page?('/file_explorer') %> <%= Dir.pwd %> 
+			<% else %> 
+				<a href="/file_explorer"><img src="/assets/file_explorer/home.svg" alt="home" class="icon wk"><br>
+				<b>System Root Path</b></a>
+			<% end %>	
+		</th>
+	  </tr>
+	</table><br>
 
-<hr><br>
-<h2>Some Commands I'm Intentionally saving on this page. . . signed => Odion Ohio</h2>
-<% if request.ssl? == true %>
-  <b>https is true</b>
-<% else %>  
-  <%= request.base_url[7..-1] %><br>
-<% end %>
-<%= request.base_url %> <br> 
+	<table>
+	  <thead>
+		<tr>
+		  <th>Filename</th>
+		  <th>Size</th>
+		  <th>Date</th>
+		  <th>Delete</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<% @directory.each do |entry| %>
+		<tr>
+		  <td>
+			<% if entry[:entry] == '../' %>
+			  <a href="/<%= entry[:relative] %>"><img src="/assets/file_explorer/arrow-circle-left.svg" alt="arrow-circle-left" class="icon wk"></a>
+			<% elsif entry[:entry] == './' %>
+			  <img src="/assets/file_explorer/aperture.svg" alt="aperture" class="icon n-wk">
+			<% elsif entry[:entry].last == '/' && entry[:entry].first != '.' %>
+			  <a href="/<%= entry[:relative] %>"><img src="/assets/file_explorer/folder.svg" alt="folder" class="icon wk"></a>		
+			<% else %>
+			  <%= link_to image_tag("/assets/file_explorer/file.svg", class: "icon wk", alt: "file"), "/#{entry[:relative]}" %>
+			<% end %>
+			
+			
+			<%= link_to "#{entry[:entry]}", "/#{entry[:relative]}", class: entry[:type].to_s %>		
+		  </td>
+		  <td>
+			<%= entry[:size] %>
+		  </td>
+		  <td>
+			<%= entry[:date] %>
+		  </td>
+		  <td>
+			<% if entry[:entry] != './' && entry[:entry] != '../' %>
+			  <%# link_to 'Delete', "/#{entry[:relative]}", method: :delete, class: 'delete', data: { confirm: "Are you sure you want to delete `#{entry[:absolute]}`?" } %>
+			<% end %>
+		  </td>
+		</tr>
+		<% end %>
+	  </tbody>
+	</table>
+</div>
 
-<%= request.host %><%= request.port_string %><br>
-<%= request.request_method %><br>
-<%= request.url %><br>
-<%= request.original_url %><br>
-<%= request.ssl? %><br>
+<br><br>
