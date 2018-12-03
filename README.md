@@ -21,12 +21,7 @@ gem 'file_explorer'
 
 And then execute:
 ```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install file_explorer
+$ bundle install
 ```
 
 And in your routes: 
