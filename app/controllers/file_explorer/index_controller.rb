@@ -41,7 +41,11 @@ module FileExplorer
 	  end
 	  
 	  def folder_create
-        `mkdir #{params[:index].fetch(:name)}`
+	    if Gem.win_platform?
+          `mkdir #{params[:index].fetch(:name)}`
+		else
+		  `sudo mkdir #{params[:index].fetch(:name)}`
+		end
 		redirect_to request.referrer, notice: "#{params[:index].fetch(:name)} FOLDER CREATED!"		
 	  end	  
 
