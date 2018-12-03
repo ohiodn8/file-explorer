@@ -20,25 +20,30 @@ module FileExplorer
 		elsif File.file?(absolute_path)
 		  if File.size(absolute_path) > 2500_000
 			#send_file absolute_path
-			redirect_to '/', notice: "Not Loadable. . . Way to big!"
+			redirect_to request.referrer, notice: "Not Loadable. . . Way to big!"
 		  else
 			@file = File.read(absolute_path)
 			render :file, formats: :html
 		  end
 		end
 	  end
+	  	  
 
 	  def delete
 		absolute_path = check_path(params[:path])
 		if File.directory?(absolute_path)
-		  redirect_to absolute_path, notice: "DELETED!! DELETED!!!"
 		  FileUtils.rm_rf(absolute_path)
 		else
-		redirect_to absolute_path, notice: "DELETED!! DELETED!!!"
 		  FileUtils.rm(absolute_path)
 		end
+		redirect_to request.referrer, notice: "DELETED!!  DELETED!!!"	
 		head 204
 	  end
+	  
+	  def folder_create
+        `mkdir #{params[:index].fetch(:name)}`
+		redirect_to request.referrer, notice: "#{params[:index].fetch(:name)} FOLDER CREATED!"		
+	  end	  
 
 	  private
 

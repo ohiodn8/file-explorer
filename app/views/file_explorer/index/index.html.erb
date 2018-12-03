@@ -1,9 +1,13 @@
 <div style="background-color:#F0F8FF;">
 	<h1 style="display: inline-block;margin: 3px 10px;">
 		<a href="https://github.com/ohiodn8/file-explorer" target="_blank">File Explorer</a>
-	</h1>	
+	</h1>	| <%= link_to "Main App", main_app.root_path %> |
 	<br><br>
 </div>
+
+<% if notice %>
+<br><h2 id="notice"><%= notice %></h2>
+<% end %>
 
 <div style="margin: 25px 50px;">
 	<table>
@@ -26,7 +30,7 @@
 		  <th>Filename</th>
 		  <th>Size</th>
 		  <th>Date</th>
-		  <th>Delete</th>
+		  <th style="display:none">Delete</th>
 		</tr>
 	  </thead>
 	  <tbody>
@@ -52,15 +56,31 @@
 		  <td>
 			<%= entry[:date] %>
 		  </td>
-		  <td>
+		  <td style="display:none">
 			<% if entry[:entry] != './' && entry[:entry] != '../' %>
-			  <%# link_to 'Delete', "/#{entry[:relative]}", method: :delete, class: 'delete', data: { confirm: "Are you sure you want to delete `#{entry[:absolute]}`?" } %>
+			    <%= link_to 'Delete', "/#{entry[:relative]}", method: :delete, class: 'delete', data: { confirm: "Are you sure you want to delete `#{entry[:absolute]}`?" } %>
 			<% end %>
 		  </td>
 		</tr>
 		<% end %>
 	  </tbody>
 	</table>
+
+	<br><br>
+	<h2>Delete Switch</h2>
+	<label class="switch">
+	  <input type="checkbox" id="tDelete">
+	  <span class="slider"></span>
+	</label>
+
+	<br><br>
+	<% if current_page?('/file_explorer') %>
+		<h2>Create Folder</h2>
+		<%= form_for :index, url: "file_explorer/index_controller/folder_create" do |form| %>
+		  <%= form.text_field :name %><br>
+		  <%= form.submit "Create Folder" %>
+		<% end  %>	
+	<% end  %>
 </div>
 
 <br><br>

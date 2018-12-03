@@ -11,5 +11,15 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
+//= require file_explorer/jquery-3.3.1.min
 //= require_tree .
+
+$(function () {
+        $("#tDelete").click(function () {
+            if ($(this).is(":checked")) {
+                $('td:nth-child(4),th:nth-child(4)').show();
+            } else {
+                $('td:nth-child(4),th:nth-child(4)').hide();
+            }
+        });
+    });
