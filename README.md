@@ -1,5 +1,4 @@
 # FileExplorer
-Short description and motivation.
 
 This is a file explorer (as its name suggests). With this gem enabled in your app, you should be able to browse your server directory on the browser. 
 This gem acts as a gui to your server, and you're able to view the directories and files; you have the ability to delete files and folders; (a toggle switch hides the delete feature). 
